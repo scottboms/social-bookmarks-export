@@ -8,5 +8,5 @@ This is just easier.
 
 ## Changelog
 
-1.0 - Initial release
-1.0.1 - Added Pinboard backup script
+* 1.0 - Initial release
+* 1.0.1 - Added Pinboard backup script
