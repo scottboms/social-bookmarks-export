@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Generate an XML download of all bookmarks from pinboard
+# https://pinboard.in/api/
+
+# -----------------------------------------------------------------------------
+# Edit the variables below to set your pinboard account credentials
+# and the path where you would like the time-stamped backups saved
+#
+# Be sure to include a trailing slash at the end of the location variable
+# -----------------------------------------------------------------------------
+
+USER="ENTER_YOUR_USERNAME_HERE"
+PASS="ENTER_YOUR_PASSWORD_HERE"
+LOCATION="${HOME}/Documents/Pinboard-Backups/"
+
+# -----------------------------------------------------------------------------
+# DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU'RE DOING
+# -----------------------------------------------------------------------------
+
+DATE=`date "+%Y-%m-%d"`
+
+if [ -d ${LOCATION} ]; then
+	echo "Starting export... to ${LOCATION}"
+  curl https://${USER}:${PASS}@api.pinboard.in/v1/posts/all > ${LOCATION}bookmarks-${DATE}.xml
+else
+	echo "Directory doesn't exist - but I'll create it for you first"
+	mkdir -p ${LOCATION}
+  curl https://${USER}:${PASS}@api.pinboard.in/v1/posts/all > ${LOCATION}bookmarks-${DATE}.xml
+fi
